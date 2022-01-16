@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  Quizzler-iOS13
+//  Quizzler App
 //
 //  Created by Saeem on 11/01/2021.
 //
