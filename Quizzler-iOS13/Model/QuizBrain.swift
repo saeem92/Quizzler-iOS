@@ -28,34 +28,42 @@ struct QuizBrain {
         
         // Above q & a came here from initializer that we created in question file
     ]
-    func checkAnswer(_ userAnswer: String) -> Bool { // This function is created to check user answer and we will call it in viewController!
+    var score = 0 // This will help us in showing score to the user when they answer a question.
+    
+    mutating func checkAnswer(_ userAnswer: String) -> Bool { // This function is created to check user answer and we will call it in viewController!
         if userAnswer == quiz[questionNumber].answer {
+            score += 1
            return true // User got it right
         } else {
             return false// User Got it Wrong
         }
+    }
+    
+    func getScore() -> Int {
+        return score
     }
         
         func getQuestionText() -> String { // This is used to get to the next questions
             return quiz[questionNumber].text
         }
         
-        func getProgress() -> Float {  // This function is used to see progress on the number of questions
-            let progress = Float(questionNumber / quiz.count)
-            return progress
-        }
+    func getProgress() -> Float {  // This is used to see progress of the user, How many questions he is left with or how many he has attempted.
+        
+        return Float(questionNumber) / Float(quiz.count)
+    }
     
-    func nextQuestion() {
+    mutating func nextQuestion() {
         if questionNumber + 1 < quiz.count { // quiz.count is the length of our array.
             // we are adding question number + 1 to secure the fail check or you can say that our app do not crashes when the last question is answered.
             // By adding + 1 we are making sure quiz.count do not goes to count of 3 and then update UI instead update UI on the index 2 so our app do not crashes this way we will never go beyond 2.
             
             questionNumber += 1 // This code is sending us to the next question when a button is pressed on the app true or false.
         } else {
+            score = 0 // This will reset user score to zero when he gets to the first question after answering all the questions in the quiz.
+            
             questionNumber = 0 // This will take us to the first question when the final question is answered. This is creating an endless loop of our questions and answers of course until the user gets bored:).
         }
     }
-    
     
 }
 

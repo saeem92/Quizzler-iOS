@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var trueButton: UIButton!
@@ -54,7 +55,7 @@ class ViewController: UIViewController {
         progressBar.progress = quizBrain.getProgress()
         // progressBar.progress code is helping us managing our progress bar we have used float here. In the above code we are diving question number from the total number of elements in quiz array so that we can see the progress.
         // We have used + 1 to see some progress in our progressbar when it is at the first question.
-        
+        scoreLabel.text = "Score: \(quizBrain.getScore())"
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
         
